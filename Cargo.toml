@@ -1,0 +1,9 @@
+[package]
+name = "jack-sys"
+version = "0.0.1"
+authors = ["Patrick Reisert"]
+description = "Low-level binding to the JACK audio API."
+repository = "https://github.com/Boddlnagg/jack-sys"
+
+[dependencies]
+libc = "*"
