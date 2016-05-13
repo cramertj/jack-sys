@@ -1,10 +1,10 @@
 [package]
 name = "jack-sys"
-version = "0.0.2"
+version = "0.1.0"
 authors = ["Patrick Reisert"]
 description = "Low-level binding to the JACK audio API."
 repository = "https://github.com/Boddlnagg/jack-sys"
-license = "MIT"
+license = "MIT OR Apache-2.0"
 
 [dependencies]
-libc = "*"
+libc = "0.2"
