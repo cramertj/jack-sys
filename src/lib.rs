@@ -209,6 +209,215 @@ impl ::std::default::Default for Struct_Unnamed4 {
     fn default() -> Self { unsafe { ::std::mem::zeroed() } }
 }
 pub type jack_transport_info_t = Struct_Unnamed4;
+pub type jack_thread_creator_t =
+    ::std::option::Option<extern "C" fn(arg1: *mut ::libc::pthread_t,
+                                        arg2: *const ::libc::pthread_attr_t,
+                                        function:
+                                            ::std::option::Option<extern "C" fn(arg1:
+                                                                                    *mut ::libc::c_void)
+                                                                      ->
+                                                                          *mut ::libc::c_void>,
+                                        arg: *mut ::libc::c_void)
+                              -> ::libc::c_int>;
+pub type Enum_JackSessionEventType = ::libc::c_uint;
+pub const JackSessionSave: ::libc::c_uint = 1;
+pub const JackSessionSaveAndQuit: ::libc::c_uint = 2;
+pub const JackSessionSaveTemplate: ::libc::c_uint = 3;
+pub type jack_session_event_type_t = Enum_JackSessionEventType;
+pub type Enum_JackSessionFlags = ::libc::c_uint;
+pub const JackSessionSaveError: ::libc::c_uint = 1;
+pub const JackSessionNeedTerminal: ::libc::c_uint = 2;
+pub type jack_session_flags_t = Enum_JackSessionFlags;
+#[repr(C)]
+#[derive(Copy)]
+pub struct Struct__jack_session_event {
+    pub _type: jack_session_event_type_t,
+    pub session_dir: *const ::libc::c_char,
+    pub client_uuid: *const ::libc::c_char,
+    pub command_line: *mut ::libc::c_char,
+    pub flags: jack_session_flags_t,
+    pub future: ::libc::uint32_t,
+}
+impl ::std::clone::Clone for Struct__jack_session_event {
+    fn clone(&self) -> Self { *self }
+}
+impl ::std::default::Default for Struct__jack_session_event {
+    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+}
+pub type jack_session_event_t = Struct__jack_session_event;
+pub type JackSessionCallback =
+    ::std::option::Option<extern "C" fn(event: *mut jack_session_event_t,
+                                        arg: *mut ::libc::c_void) -> ()>;
+#[repr(C)]
+#[derive(Copy)]
+pub struct Struct_Unnamed5 {
+    pub uuid: *const ::libc::c_char,
+    pub client_name: *const ::libc::c_char,
+    pub command: *const ::libc::c_char,
+    pub flags: jack_session_flags_t,
+}
+impl ::std::clone::Clone for Struct_Unnamed5 {
+    fn clone(&self) -> Self { *self }
+}
+impl ::std::default::Default for Struct_Unnamed5 {
+    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+}
+pub type jack_session_command_t = Struct_Unnamed5;
+pub type JSList = Struct__JSList;
+pub type JCompareFunc =
+    ::std::option::Option<extern "C" fn(a: *mut ::libc::c_void,
+                                        b: *mut ::libc::c_void)
+                              -> ::libc::c_int>;
+#[repr(C)]
+#[derive(Copy)]
+pub struct Struct__JSList {
+    pub data: *mut ::libc::c_void,
+    pub next: *mut JSList,
+}
+impl ::std::clone::Clone for Struct__JSList {
+    fn clone(&self) -> Self { *self }
+}
+impl ::std::default::Default for Struct__JSList {
+    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+}
+pub type Enum_Unnamed6 = ::libc::c_uint;
+pub const JackParamInt: ::libc::c_uint = 1;
+pub const JackParamUInt: ::libc::c_uint = 2;
+pub const JackParamChar: ::libc::c_uint = 3;
+pub const JackParamString: ::libc::c_uint = 4;
+pub const JackParamBool: ::libc::c_uint = 5;
+pub type jackctl_param_type_t = Enum_Unnamed6;
+pub type Enum_Unnamed7 = ::libc::c_uint;
+pub const JackMaster: ::libc::c_uint = 1;
+pub const JackSlave: ::libc::c_uint = 2;
+pub type jackctl_driver_type_t = Enum_Unnamed7;
+#[repr(C)]
+#[derive(Copy)]
+pub struct Union_jackctl_parameter_value {
+    pub _bindgen_data_: [u32; 32usize],
+}
+impl Union_jackctl_parameter_value {
+    pub unsafe fn ui(&mut self) -> *mut ::libc::uint32_t {
+        let raw: *mut u8 = ::std::mem::transmute(&self._bindgen_data_);
+        ::std::mem::transmute(raw.offset(0))
+    }
+    pub unsafe fn i(&mut self) -> *mut ::libc::int32_t {
+        let raw: *mut u8 = ::std::mem::transmute(&self._bindgen_data_);
+        ::std::mem::transmute(raw.offset(0))
+    }
+    pub unsafe fn c(&mut self) -> *mut ::libc::c_char {
+        let raw: *mut u8 = ::std::mem::transmute(&self._bindgen_data_);
+        ::std::mem::transmute(raw.offset(0))
+    }
+    pub unsafe fn str(&mut self) -> *mut [::libc::c_char; 128usize] {
+        let raw: *mut u8 = ::std::mem::transmute(&self._bindgen_data_);
+        ::std::mem::transmute(raw.offset(0))
+    }
+    pub unsafe fn b(&mut self) -> *mut u8 {
+        let raw: *mut u8 = ::std::mem::transmute(&self._bindgen_data_);
+        ::std::mem::transmute(raw.offset(0))
+    }
+}
+impl ::std::clone::Clone for Union_jackctl_parameter_value {
+    fn clone(&self) -> Self { *self }
+}
+impl ::std::default::Default for Union_jackctl_parameter_value {
+    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+}
+pub enum Struct_jackctl_server { }
+pub type jackctl_server_t = Struct_jackctl_server;
+pub enum Struct_jackctl_driver { }
+pub type jackctl_driver_t = Struct_jackctl_driver;
+pub enum Struct_jackctl_internal { }
+pub type jackctl_internal_t = Struct_jackctl_internal;
+pub enum Struct_jackctl_parameter { }
+pub type jackctl_parameter_t = Struct_jackctl_parameter;
+pub enum Struct_jackctl_sigmask { }
+pub type jackctl_sigmask_t = Struct_jackctl_sigmask;
+#[repr(C)]
+#[derive(Copy)]
+pub struct Struct_Unnamed8 {
+    pub key: *const ::libc::c_char,
+    pub data: *const ::libc::c_char,
+    pub _type: *const ::libc::c_char,
+}
+impl ::std::clone::Clone for Struct_Unnamed8 {
+    fn clone(&self) -> Self { *self }
+}
+impl ::std::default::Default for Struct_Unnamed8 {
+    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+}
+pub type jack_property_t = Struct_Unnamed8;
+#[repr(C)]
+#[derive(Copy)]
+pub struct Struct_Unnamed9 {
+    pub subject: jack_uuid_t,
+    pub property_cnt: ::libc::uint32_t,
+    pub properties: *mut jack_property_t,
+    pub property_size: ::libc::uint32_t,
+}
+impl ::std::clone::Clone for Struct_Unnamed9 {
+    fn clone(&self) -> Self { *self }
+}
+impl ::std::default::Default for Struct_Unnamed9 {
+    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+}
+pub type jack_description_t = Struct_Unnamed9;
+pub type Enum_Unnamed10 = ::libc::c_uint;
+pub const PropertyCreated: ::libc::c_uint = 0;
+pub const PropertyChanged: ::libc::c_uint = 1;
+pub const PropertyDeleted: ::libc::c_uint = 2;
+pub type jack_property_change_t = Enum_Unnamed10;
+pub type JackPropertyChangeCallback =
+    ::std::option::Option<extern "C" fn(subject: jack_uuid_t,
+                                        key: *const ::libc::c_char,
+                                        change: jack_property_change_t,
+                                        arg: *mut ::libc::c_void) -> ()>;
+pub type jack_midi_data_t = ::libc::c_uchar;
+#[repr(C)]
+#[derive(Copy)]
+pub struct Struct__jack_midi_event {
+    pub time: jack_nframes_t,
+    pub size: ::libc::size_t,
+    pub buffer: *mut jack_midi_data_t,
+}
+impl ::std::clone::Clone for Struct__jack_midi_event {
+    fn clone(&self) -> Self { *self }
+}
+impl ::std::default::Default for Struct__jack_midi_event {
+    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+}
+pub type jack_midi_event_t = Struct__jack_midi_event;
+#[repr(C)]
+#[derive(Copy)]
+pub struct Struct_Unnamed11 {
+    pub buf: *mut ::libc::c_char,
+    pub len: ::libc::size_t,
+}
+impl ::std::clone::Clone for Struct_Unnamed11 {
+    fn clone(&self) -> Self { *self }
+}
+impl ::std::default::Default for Struct_Unnamed11 {
+    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+}
+pub type jack_ringbuffer_data_t = Struct_Unnamed11;
+#[repr(C)]
+#[derive(Copy)]
+pub struct Struct_Unnamed12 {
+    pub buf: *mut ::libc::c_char,
+    pub write_ptr: ::libc::size_t,
+    pub read_ptr: ::libc::size_t,
+    pub size: ::libc::size_t,
+    pub size_mask: ::libc::size_t,
+    pub mlocked: ::libc::c_int,
+}
+impl ::std::clone::Clone for Struct_Unnamed12 {
+    fn clone(&self) -> Self { *self }
+}
+impl ::std::default::Default for Struct_Unnamed12 {
+    fn default() -> Self { unsafe { ::std::mem::zeroed() } }
+}
+pub type jack_ringbuffer_t = Struct_Unnamed12;
 extern "C" {
     pub static mut jack_error_callback:
                ::std::option::Option<extern "C" fn(msg: *const ::libc::c_char)
@@ -216,6 +425,12 @@ extern "C" {
     pub static mut jack_info_callback:
                ::std::option::Option<extern "C" fn(msg: *const ::libc::c_char)
                                          -> ()>;
+    pub static mut JACK_METADATA_PRETTY_NAME: *const ::libc::c_char;
+    pub static mut JACK_METADATA_HARDWARE: *const ::libc::c_char;
+    pub static mut JACK_METADATA_CONNECTED: *const ::libc::c_char;
+    pub static mut JACK_METADATA_PORT_GROUP: *const ::libc::c_char;
+    pub static mut JACK_METADATA_ICON_SMALL: *const ::libc::c_char;
+    pub static mut JACK_METADATA_ICON_LARGE: *const ::libc::c_char;
 }
 
 #[link(name = "jack")]
@@ -481,4 +696,257 @@ extern "C" {
                                                                               *const ::libc::c_char)
                                                                 -> ()>) -> ();
     pub fn jack_free(ptr: *mut ::libc::c_void) -> ();
+    pub fn jack_client_real_time_priority(arg1: *mut jack_client_t)
+     -> ::libc::c_int;
+    pub fn jack_client_max_real_time_priority(arg1: *mut jack_client_t)
+     -> ::libc::c_int;
+    pub fn jack_acquire_real_time_scheduling(thread: jack_native_thread_t,
+                                             priority: ::libc::c_int)
+     -> ::libc::c_int;
+    pub fn jack_client_create_thread(client: *mut jack_client_t,
+                                     thread: *mut jack_native_thread_t,
+                                     priority: ::libc::c_int,
+                                     realtime: ::libc::c_int,
+                                     start_routine:
+                                         ::std::option::Option<extern "C" fn(arg1:
+                                                                                 *mut ::libc::c_void)
+                                                                   ->
+                                                                       *mut ::libc::c_void>,
+                                     arg: *mut ::libc::c_void)
+     -> ::libc::c_int;
+    pub fn jack_drop_real_time_scheduling(thread: jack_native_thread_t)
+     -> ::libc::c_int;
+    pub fn jack_client_stop_thread(client: *mut jack_client_t,
+                                   thread: jack_native_thread_t)
+     -> ::libc::c_int;
+    pub fn jack_client_kill_thread(client: *mut jack_client_t,
+                                   thread: jack_native_thread_t)
+     -> ::libc::c_int;
+    pub fn jack_set_thread_creator(creator: jack_thread_creator_t) -> ();
+    pub fn jack_set_session_callback(client: *mut jack_client_t,
+                                     session_callback: JackSessionCallback,
+                                     arg: *mut ::libc::c_void)
+     -> ::libc::c_int;
+    pub fn jack_session_reply(client: *mut jack_client_t,
+                              event: *mut jack_session_event_t)
+     -> ::libc::c_int;
+    pub fn jack_session_event_free(event: *mut jack_session_event_t) -> ();
+    pub fn jack_client_get_uuid(client: *mut jack_client_t)
+     -> *mut ::libc::c_char;
+    pub fn jack_session_notify(client: *mut jack_client_t,
+                               target: *const ::libc::c_char,
+                               _type: jack_session_event_type_t,
+                               path: *const ::libc::c_char)
+     -> *mut jack_session_command_t;
+    pub fn jack_session_commands_free(cmds: *mut jack_session_command_t)
+     -> ();
+    pub fn jack_reserve_client_name(client: *mut jack_client_t,
+                                    name: *const ::libc::c_char,
+                                    uuid: *const ::libc::c_char)
+     -> ::libc::c_int;
+    pub fn jack_client_has_session_callback(client: *mut jack_client_t,
+                                            client_name:
+                                                *const ::libc::c_char)
+     -> ::libc::c_int;
+    pub fn jackctl_setup_signals(flags: ::libc::c_uint)
+     -> *mut jackctl_sigmask_t;
+    pub fn jackctl_wait_signals(signals: *mut jackctl_sigmask_t) -> ();
+    pub fn jackctl_server_create(on_device_acquire:
+                                     ::std::option::Option<extern "C" fn(device_name:
+                                                                             *const ::libc::c_char)
+                                                               -> u8>,
+                                 on_device_release:
+                                     ::std::option::Option<extern "C" fn(device_name:
+                                                                             *const ::libc::c_char)
+                                                               -> ()>)
+     -> *mut jackctl_server_t;
+    pub fn jackctl_server_destroy(server: *mut jackctl_server_t) -> ();
+    pub fn jackctl_server_open(server: *mut jackctl_server_t,
+                               driver: *mut jackctl_driver_t) -> u8;
+    pub fn jackctl_server_start(server: *mut jackctl_server_t) -> u8;
+    pub fn jackctl_server_stop(server: *mut jackctl_server_t) -> u8;
+    pub fn jackctl_server_close(server: *mut jackctl_server_t) -> u8;
+    pub fn jackctl_server_get_drivers_list(server: *mut jackctl_server_t)
+     -> *const JSList;
+    pub fn jackctl_server_get_parameters(server: *mut jackctl_server_t)
+     -> *const JSList;
+    pub fn jackctl_server_get_internals_list(server: *mut jackctl_server_t)
+     -> *const JSList;
+    pub fn jackctl_server_load_internal(server: *mut jackctl_server_t,
+                                        internal: *mut jackctl_internal_t)
+     -> u8;
+    pub fn jackctl_server_unload_internal(server: *mut jackctl_server_t,
+                                          internal: *mut jackctl_internal_t)
+     -> u8;
+    pub fn jackctl_server_add_slave(server: *mut jackctl_server_t,
+                                    driver: *mut jackctl_driver_t) -> u8;
+    pub fn jackctl_server_remove_slave(server: *mut jackctl_server_t,
+                                       driver: *mut jackctl_driver_t) -> u8;
+    pub fn jackctl_server_switch_master(server: *mut jackctl_server_t,
+                                        driver: *mut jackctl_driver_t) -> u8;
+    pub fn jackctl_driver_get_name(driver: *mut jackctl_driver_t)
+     -> *const ::libc::c_char;
+    pub fn jackctl_driver_get_type(driver: *mut jackctl_driver_t)
+     -> jackctl_driver_type_t;
+    pub fn jackctl_driver_get_parameters(driver: *mut jackctl_driver_t)
+     -> *const JSList;
+    pub fn jackctl_driver_params_parse(driver: *mut jackctl_driver_t,
+                                       argc: ::libc::c_int,
+                                       argv: *mut *mut ::libc::c_char)
+     -> ::libc::c_int;
+    pub fn jackctl_internal_get_name(internal: *mut jackctl_internal_t)
+     -> *const ::libc::c_char;
+    pub fn jackctl_internal_get_parameters(internal: *mut jackctl_internal_t)
+     -> *const JSList;
+    pub fn jackctl_parameter_get_name(parameter: *mut jackctl_parameter_t)
+     -> *const ::libc::c_char;
+    pub fn jackctl_parameter_get_short_description(parameter:
+                                                       *mut jackctl_parameter_t)
+     -> *const ::libc::c_char;
+    pub fn jackctl_parameter_get_long_description(parameter:
+                                                      *mut jackctl_parameter_t)
+     -> *const ::libc::c_char;
+    pub fn jackctl_parameter_get_type(parameter: *mut jackctl_parameter_t)
+     -> jackctl_param_type_t;
+    pub fn jackctl_parameter_get_id(parameter: *mut jackctl_parameter_t)
+     -> ::libc::c_char;
+    pub fn jackctl_parameter_is_set(parameter: *mut jackctl_parameter_t)
+     -> u8;
+    pub fn jackctl_parameter_reset(parameter: *mut jackctl_parameter_t) -> u8;
+    pub fn jackctl_parameter_get_value(parameter: *mut jackctl_parameter_t)
+     -> Union_jackctl_parameter_value;
+    pub fn jackctl_parameter_set_value(parameter: *mut jackctl_parameter_t,
+                                       value_ptr:
+                                           *const Union_jackctl_parameter_value)
+     -> u8;
+    pub fn jackctl_parameter_get_default_value(parameter:
+                                                   *mut jackctl_parameter_t)
+     -> Union_jackctl_parameter_value;
+    pub fn jackctl_parameter_has_range_constraint(parameter:
+                                                      *mut jackctl_parameter_t)
+     -> u8;
+    pub fn jackctl_parameter_has_enum_constraint(parameter:
+                                                     *mut jackctl_parameter_t)
+     -> u8;
+    pub fn jackctl_parameter_get_enum_constraints_count(parameter:
+                                                            *mut jackctl_parameter_t)
+     -> ::libc::uint32_t;
+    pub fn jackctl_parameter_get_enum_constraint_value(parameter:
+                                                           *mut jackctl_parameter_t,
+                                                       index: ::libc::uint32_t)
+     -> Union_jackctl_parameter_value;
+    pub fn jackctl_parameter_get_enum_constraint_description(parameter:
+                                                                 *mut jackctl_parameter_t,
+                                                             index: ::libc::uint32_t)
+     -> *const ::libc::c_char;
+    pub fn jackctl_parameter_get_range_constraint(parameter:
+                                                      *mut jackctl_parameter_t,
+                                                  min_ptr:
+                                                      *mut Union_jackctl_parameter_value,
+                                                  max_ptr:
+                                                      *mut Union_jackctl_parameter_value)
+     -> ();
+    pub fn jackctl_parameter_constraint_is_strict(parameter:
+                                                      *mut jackctl_parameter_t)
+     -> u8;
+    pub fn jackctl_parameter_constraint_is_fake_value(parameter:
+                                                          *mut jackctl_parameter_t)
+     -> u8;
+    pub fn jack_error(format: *const ::libc::c_char, ...) -> ();
+    pub fn jack_info(format: *const ::libc::c_char, ...) -> ();
+    pub fn jack_log(format: *const ::libc::c_char, ...) -> ();
+    pub fn jack_set_property(arg1: *mut jack_client_t, subject: jack_uuid_t,
+                             key: *const ::libc::c_char,
+                             value: *const ::libc::c_char,
+                             _type: *const ::libc::c_char) -> ::libc::c_int;
+    pub fn jack_get_property(subject: jack_uuid_t, key: *const ::libc::c_char,
+                             value: *mut *mut ::libc::c_char,
+                             _type: *mut *mut ::libc::c_char)
+     -> ::libc::c_int;
+    pub fn jack_free_description(desc: *mut jack_description_t,
+                                 free_description_itself: ::libc::c_int)
+     -> ();
+    pub fn jack_get_properties(subject: jack_uuid_t,
+                               desc: *mut jack_description_t)
+     -> ::libc::c_int;
+    pub fn jack_get_all_properties(descs: *mut *mut jack_description_t)
+     -> ::libc::c_int;
+    pub fn jack_remove_property(client: *mut jack_client_t,
+                                subject: jack_uuid_t,
+                                key: *const ::libc::c_char) -> ::libc::c_int;
+    pub fn jack_remove_properties(client: *mut jack_client_t,
+                                  subject: jack_uuid_t) -> ::libc::c_int;
+    pub fn jack_remove_all_properties(client: *mut jack_client_t)
+     -> ::libc::c_int;
+    pub fn jack_set_property_change_callback(client: *mut jack_client_t,
+                                             callback:
+                                                 JackPropertyChangeCallback,
+                                             arg: *mut ::libc::c_void)
+     -> ::libc::c_int;
+    pub fn jack_get_internal_client_name(client: *mut jack_client_t,
+                                         intclient: jack_intclient_t)
+     -> *mut ::libc::c_char;
+    pub fn jack_internal_client_handle(client: *mut jack_client_t,
+                                       client_name: *const ::libc::c_char,
+                                       status: *mut jack_status_t)
+     -> jack_intclient_t;
+    pub fn jack_internal_client_load(client: *mut jack_client_t,
+                                     client_name: *const ::libc::c_char,
+                                     options: jack_options_t,
+                                     status: *mut jack_status_t, ...)
+     -> jack_intclient_t;
+    pub fn jack_internal_client_unload(client: *mut jack_client_t,
+                                       intclient: jack_intclient_t)
+     -> jack_status_t;
+    pub fn jack_get_max_delayed_usecs(client: *mut jack_client_t)
+     -> ::libc::c_float;
+    pub fn jack_get_xrun_delayed_usecs(client: *mut jack_client_t)
+     -> ::libc::c_float;
+    pub fn jack_reset_max_delayed_usecs(client: *mut jack_client_t) -> ();
+    pub fn jack_midi_get_event_count(port_buffer: *mut ::libc::c_void)
+     -> ::libc::uint32_t;
+    pub fn jack_midi_event_get(event: *mut jack_midi_event_t,
+                               port_buffer: *mut ::libc::c_void,
+                               event_index: ::libc::uint32_t) -> ::libc::c_int;
+    pub fn jack_midi_clear_buffer(port_buffer: *mut ::libc::c_void) -> ();
+    pub fn jack_midi_reset_buffer(port_buffer: *mut ::libc::c_void) -> ();
+    pub fn jack_midi_max_event_size(port_buffer: *mut ::libc::c_void)
+     -> ::libc::size_t;
+    pub fn jack_midi_event_reserve(port_buffer: *mut ::libc::c_void,
+                                   time: jack_nframes_t, data_size: ::libc::size_t)
+     -> *mut jack_midi_data_t;
+    pub fn jack_midi_event_write(port_buffer: *mut ::libc::c_void,
+                                 time: jack_nframes_t,
+                                 data: *const jack_midi_data_t,
+                                 data_size: ::libc::size_t) -> ::libc::c_int;
+    pub fn jack_midi_get_lost_event_count(port_buffer: *mut ::libc::c_void)
+     -> ::libc::uint32_t;
+    pub fn jack_ringbuffer_create(sz: ::libc::size_t) -> *mut jack_ringbuffer_t;
+    pub fn jack_ringbuffer_free(rb: *mut jack_ringbuffer_t) -> ();
+    pub fn jack_ringbuffer_get_read_vector(rb: *const jack_ringbuffer_t,
+                                           vec: *mut jack_ringbuffer_data_t)
+     -> ();
+    pub fn jack_ringbuffer_get_write_vector(rb: *const jack_ringbuffer_t,
+                                            vec: *mut jack_ringbuffer_data_t)
+     -> ();
+    pub fn jack_ringbuffer_read(rb: *mut jack_ringbuffer_t,
+                                dest: *mut ::libc::c_char, cnt: ::libc::size_t)
+     -> ::libc::size_t;
+    pub fn jack_ringbuffer_peek(rb: *mut jack_ringbuffer_t,
+                                dest: *mut ::libc::c_char, cnt: ::libc::size_t)
+     -> ::libc::size_t;
+    pub fn jack_ringbuffer_read_advance(rb: *mut jack_ringbuffer_t,
+                                        cnt: ::libc::size_t) -> ();
+    pub fn jack_ringbuffer_read_space(rb: *const jack_ringbuffer_t) -> ::libc::size_t;
+    pub fn jack_ringbuffer_mlock(rb: *mut jack_ringbuffer_t) -> ::libc::c_int;
+    pub fn jack_ringbuffer_reset(rb: *mut jack_ringbuffer_t) -> ();
+    pub fn jack_ringbuffer_reset_size(rb: *mut jack_ringbuffer_t, sz: ::libc::size_t)
+     -> ();
+    pub fn jack_ringbuffer_write(rb: *mut jack_ringbuffer_t,
+                                 src: *const ::libc::c_char, cnt: ::libc::size_t)
+     -> ::libc::size_t;
+    pub fn jack_ringbuffer_write_advance(rb: *mut jack_ringbuffer_t,
+                                         cnt: ::libc::size_t) -> ();
+    pub fn jack_ringbuffer_write_space(rb: *const jack_ringbuffer_t)
+     -> ::libc::size_t;
 }
